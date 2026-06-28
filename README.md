@@ -2,7 +2,7 @@
 
 A clean, real-time analog clock built with vanilla JavaScript and the HTML5 Canvas API — no frameworks, no dependencies, just the browser.
 
-![Analog clock preview](./screenshots/clock-preview.png)
+![Analog clock preview](https://github.com/osmanadam-dev/Analog-Clock/blob/main/clock-preview.png)
 
 ## ✨ Features
 
@@ -50,26 +50,6 @@ The clock is encapsulated in an `AnalogClock` class and redrawn every frame via 
 5. **`#drawHands()`** — computes hour/minute/second angles (including milliseconds, for a smooth sweeping second hand) and draws each via `#drawHand()`
 
 Because the canvas context is translated to its own center once at setup, every drawing call happens relative to `(0, 0)`, keeping the rotation math simple. The class also listens for `resize` events and recalculates the canvas dimensions automatically.
-
-## 🔧 What Changed in the Rewrite
-
-The original version worked but had a few rough edges. This version fixes them:
-
-| Before | After |
-|---|---|
-| `drawClock()` was defined 4 times, each silently overwriting the last | Single class with private methods (`#drawFace`, `#drawNumbers`, etc.) |
-| Initial render call was commented out (clock was blank for 1s on load) | Renders immediately, then on every animation frame |
-| Dead code at the bottom referencing a nonexistent `app` element | Removed entirely |
-| `setInterval(drawClock, 1000)` — second hand visibly jumps | `requestAnimationFrame` with millisecond precision — smooth sweep |
-| Fixed canvas resolution (blurry on retina screens) | Canvas buffer scales with `devicePixelRatio` |
-| No tick marks | Minute/hour tick marks added around the face |
-| Plain CSS values | CSS custom properties + `clamp()` for fluid sizing |
-
-## 📌 Roadmap
-
-- [ ] Add a dark mode theme
-- [ ] Add a digital time readout below the clock
-- [ ] Optional ticking sound effect (toggleable)
 
 ## 📄 License
 
